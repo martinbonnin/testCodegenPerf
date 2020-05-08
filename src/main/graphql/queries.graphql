@@ -1,12 +1,24 @@
-query getNodeId {
-    nodeId
-}
-
-query getActivities {
-    activities {
-        nodes {
-            createdAt
-            eventDescription
+mutation createAddress($address:AddressInput!) {
+    createAddress(input:{address:$address}) {
+        address {
+            ...addressDetails
         }
     }
+}
+fragment addressDetails on Address {
+    id
+    firstName
+    lastName
+    address
+    address2
+    state
+    countryByCountryCode {
+        name
+        code
+        phoneCodes
+    }
+    city
+    zipcode
+    phone
+    types
 }
